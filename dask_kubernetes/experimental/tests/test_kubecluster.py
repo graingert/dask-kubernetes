@@ -42,7 +42,7 @@ def test_multiple_clusters_simultaneously(kopf_runner, docker_image):
 def test_multiple_clusters_simultaneously_same_loop(kopf_runner, docker_image):
     with kopf_runner:
         with KubeCluster(name="fizz", image=docker_image) as cluster1, KubeCluster(
-            name="buzz", image=docker_image, loop=cluster1.loop,
+            name="buzz", image=docker_image, loop=cluster1.loop
         ) as cluster2:
             with Client(cluster1) as client1, Client(cluster2) as client2:
                 assert cluster1.loop is cluster2.loop is client1.loop is client2.loop
